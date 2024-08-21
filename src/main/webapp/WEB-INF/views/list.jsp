@@ -40,7 +40,7 @@
 		<br>	
 	</c:forEach>
 	
-	<a href="">추가번호 등록</a>
+	<a href="/phonebook3/writeform">추가번호 등록</a>
 
 </body>
 </html>

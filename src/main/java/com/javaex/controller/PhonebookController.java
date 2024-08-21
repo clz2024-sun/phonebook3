@@ -60,7 +60,7 @@ public class PhonebookController {
 	public String list(Model model) {
 		System.out.println("PhonebookController.list()");
 
-		List<PersonVo> personList = phonebookService.exeGetPerson();
+		List<PersonVo> personList = phonebookService.exeGetPersonList();
 		model.addAttribute("personList", personList);
 		
 		return "list";

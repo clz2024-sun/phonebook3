@@ -24,7 +24,7 @@ public class PhonebookService {
 	}
 	
 	/* 전화번호 전체 가져오기 */
-	public List<PersonVo> exeGetPerson(){
+	public List<PersonVo> exeGetPersonList(){
 		System.out.println("PhonebookService.exeGetPerson()");
 		
 		List<PersonVo> personList = phonebookDao.getPersonList();
@@ -33,7 +33,7 @@ public class PhonebookService {
 	}
 	
 	
-	
+	/* 삭제 */
 	public int exePersonDelete(int no) {
 		System.out.println("PhonebookService.exePersonDelete()");
 		
