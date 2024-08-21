@@ -32,7 +32,7 @@
 			<tr>
 				<td><a href="/phonebook3/delete?no=${personVo.personId}">[삭제]</a>
 				</td>
-				<td><a href="">[수정]</a>
+				<td><a href="/phonebook3/editform?no=${personVo.personId}">[수정]</a>
 				</td>
 			</tr>
 	

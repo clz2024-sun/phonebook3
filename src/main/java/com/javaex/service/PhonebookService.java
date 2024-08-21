@@ -43,10 +43,24 @@ public class PhonebookService {
 	}
 	
 	
+	/* 수정폼 */
+	public PersonVo exeEditForm(int no) {
+		System.out.println("PhonebookService.exeEditForm()");
+		
+		PersonVo personVo = phonebookDao.getPersonOne(no);
+		
+		return personVo;
+	}
 	
 	
-	
-	
+	/* 수정 */
+	public int exeEditPerson(PersonVo personVo) {
+		System.out.println("PhonebookService.exeEdit()");
+		
+		int count = phonebookDao.updatePerson(personVo);
+		
+		return count;
+	}
 	
 	
 	

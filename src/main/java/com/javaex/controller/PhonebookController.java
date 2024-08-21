@@ -16,8 +16,6 @@ import com.javaex.vo.PersonVo;
 @Controller
 public class PhonebookController {
 
-	
-	
 	@Autowired
 	private PhonebookService phonebookService;
 	
@@ -25,6 +23,27 @@ public class PhonebookController {
 	// 메소드gs
 
 	// 메소드일반/////////////////////////////
+	/* 수정 */
+	@RequestMapping(value="/edit", method = {RequestMethod.GET, RequestMethod.POST})
+	public String edit(@ModelAttribute PersonVo personVo) {
+		System.out.println("PhonebookController.edit()");
+		
+		phonebookService.exeEditPerson(personVo);
+		
+		return "redirect:/list";
+	}
+	
+	/* 수정폼 */
+	@RequestMapping(value="/editform", method = {RequestMethod.GET, RequestMethod.POST})
+	public String editForm(@RequestParam(value="no") int no, Model model) {
+		System.out.println("PhonebookController.editForm()");
+		
+		PersonVo personVo = phonebookService.exeEditForm(no);
+		model.addAttribute("personVo", personVo);
+		
+		return "editForm";
+	}
+	
 	
 	/* 삭제 */
 	@RequestMapping(value="/delete", method = {RequestMethod.GET, RequestMethod.POST})
