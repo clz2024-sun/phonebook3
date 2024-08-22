@@ -1,12 +1,8 @@
 package com.javaex.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +18,6 @@ public class PhonebookDao {
 	private SqlSession sqlSession;
 	
 	
-
 	//생성자
 	//기본생성자 사용(그래서 생략)  
 	
@@ -31,8 +26,8 @@ public class PhonebookDao {
 	
 	//메소드 일반
 	// DB연결 메소드
-
-
+	
+	
 	/* 삭제 */
 	public int deletePerson(int no) {
 		System.out.println("PhonebookDao.deletePerson()");
@@ -46,7 +41,7 @@ public class PhonebookDao {
 	//사랑 정보 수정하기 1명
 	public int updatePerson(PersonVo personVo) {
 		System.out.println("PhonebookDao.updatePerson()");
-		
+		System.out.println(personVo);
 		int count = sqlSession.update("phonebook.update", personVo);
 		return count;
 	}
@@ -56,13 +51,18 @@ public class PhonebookDao {
 	public PersonVo getPersonOne(int no) {
 		System.out.println("PhonebookDao.getPersonOne()");
 		
-		PersonVo personVo = sqlSession.selectOne("phonebook.selectOne", no);
-		
-		System.out.println("--------------------------");
-		System.out.println(personVo);
-		System.out.println("--------------------------");
+		PersonVo personVo= sqlSession.selectOne("phonebook.selectOne", no);
 		
 		return personVo;
+	}
+	
+	
+	//사람 1명 정보 가져오기 Map
+	public Map<String, Object> getPersonOne2(int no) {
+		System.out.println("PhonebookDao.getPersonOne2()");
+		
+		Map<String, Object> personMap = sqlSession.selectOne("phonebook.selectOneMap", no);
+		return personMap;
 	}
 	
 	
@@ -70,7 +70,19 @@ public class PhonebookDao {
 	public int insertPerson(PersonVo personVo) {
 		System.out.println("PhonebookDao.insertPerson()");
 		
-		int count = sqlSession.insert("phonebook.insert", personVo);
+		//int count = sqlSession.insert("phonebook.insert", personVo);
+		
+		//가정 map
+		String name ="정우성";
+		String hp ="111";
+		String company ="222";
+		Map<String, String> pMap = new HashMap<String, String>();
+		pMap.put("name", name);
+		pMap.put("hp", hp);
+		pMap.put("company", company);
+		
+		int count = sqlSession.insert("phonebook.insert2", pMap);
+		
 		return count;
 	}
 	
